@@ -110,8 +110,8 @@ def create_observation_space_ground_truth(num_known_cameras, num_unknown_cameras
         observation_low.extend([0]*terrain_size)
         observation_high.extend([1]*terrain_size)
 
-        observation_high = np.array(observation_high, dtype=np.float)
-        observation_low = np.array(observation_low, dtype=np.float)
+        observation_high = np.array(observation_high, dtype=np.float64)
+        observation_low = np.array(observation_low, dtype=np.float64)
 
         observation_space = spaces.Box(observation_low, observation_high)
         return observation_space, obs_names
@@ -165,8 +165,8 @@ def create_observation_space_fugitive(num_known_cameras, num_known_hideouts, num
     observation_low.extend([0]*terrain_size)
     observation_high.extend([1]*terrain_size)
 
-    observation_high = np.array(observation_high, dtype=np.float)
-    observation_low = np.array(observation_low, dtype=np.float)
+    observation_high = np.array(observation_high, dtype=np.float64)
+    observation_low = np.array(observation_low, dtype=np.float64)
 
     observation_space = spaces.Box(observation_low, observation_high)
     return observation_space, obs_names
@@ -209,8 +209,8 @@ def create_observation_space_prediction(num_known_cameras, num_known_hideouts, n
     observation_low.extend([0]*terrain_size)
     observation_high.extend([1]*terrain_size)
 
-    observation_high = np.array(observation_high, dtype=np.float)
-    observation_low = np.array(observation_low, dtype=np.float)
+    observation_high = np.array(observation_high, dtype=np.float64)
+    observation_low = np.array(observation_low, dtype=np.float64)
 
     observation_space = spaces.Box(observation_low, observation_high)
     return observation_space, obs_names
@@ -289,8 +289,8 @@ def create_observation_space_blue_team(num_known_cameras, num_unknown_cameras, n
             observation_high.extend([1, 1])
             obs_names.add_name('prisoner_starting', 2)
             
-        observation_high = np.array(observation_high, dtype=np.float)
-        observation_low = np.array(observation_low, dtype=np.float)
+        observation_high = np.array(observation_high, dtype=np.float64)
+        observation_low = np.array(observation_low, dtype=np.float64)
         observation_space = spaces.Box(observation_low, observation_high)
         return observation_space, obs_names
 

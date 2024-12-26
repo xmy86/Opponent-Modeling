@@ -682,7 +682,7 @@ class SmugglerBothEnv(gym.Env):
         fugitive_speed = red_action[0]
         self.current_prisoner_speed = fugitive_speed
 
-        prisoner_location = np.array(self.prisoner.location, dtype=np.float)
+        prisoner_location = np.array(self.prisoner.location, dtype=np.float64)
         
         lat_long = self.terrain.convert_x_y_to_lat_long(prisoner_location)
         new_location = prisoner_location + direction * fugitive_speed
@@ -1032,7 +1032,7 @@ class SmugglerBothEnv(gym.Env):
         :param coord: float sequence of length 2 in the range [0, 1)
         :return: np.ndarray of shape (2,) in the range [(0, 0), (dim_x, dim_y))
         """
-        return np.array([coord[0] * self.dim_x, coord[1] * self.dim_y], dtype=np.int)
+        return np.array([coord[0] * self.dim_x, coord[1] * self.dim_y], dtype=np.int32)
 
     def reset(self, seed=None):
         """

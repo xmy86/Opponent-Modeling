@@ -279,7 +279,7 @@ class MovingObject(AbstractObject):
             # destination = (np.array([direction[0], direction[1]]) * speed).astype(np.int) + self.location
             distance_movement = speed
         # destination = np.array(destination, dtype=np.int)
-        direction = np.array(direction, dtype=np.float)
+        direction = np.array(direction, dtype=np.float64)
         # assert np.issubdtype(type(destination[0]), np.integer)
         # assert np.issubdtype(type(destination[1]), np.integer)
 
@@ -338,7 +338,7 @@ class MovingObject(AbstractObject):
         while self.terrain.out_of_bounds(not_mountain_loc) or self.terrain.in_mountain(not_mountain_loc):
             not_mountain_loc = np.array([np.random.randint(loc[0] - sample_radius, loc[0] + sample_radius),
                                          np.random.randint(loc[1] - sample_radius, loc[1] + sample_radius)],
-                                        dtype=np.int)
+                                        dtype=np.int32)
         self.planned_path = [('l', not_mountain_loc[0], not_mountain_loc[1])]
 
     def plan_path_to_random(self):
@@ -377,10 +377,10 @@ class MovingObject(AbstractObject):
             x_tangent = (b_blue - b_fugitive) / (k_fugitive - k_blue)
             y_tangent = k_blue * x_tangent + b_blue
             x_tangent, y_tangent = x_tangent, y_tangent
-        tangent_point = np.array([x_tangent, y_tangent], dtype=np.float)
+        tangent_point = np.array([x_tangent, y_tangent], dtype=np.float64)
 
         # direction of the tangent point from the current fugitive loc
-        direction_tangent = np.array([x_tangent - current_loc[0], y_tangent - current_loc[1]], dtype=np.float)
+        direction_tangent = np.array([x_tangent - current_loc[0], y_tangent - current_loc[1]], dtype=np.float64)
         is_blue_on_fugitive_movement_side = (direction_tangent[0] * np.cos(direction) > 0)
         # print(self, "is_blue_on_fugitive_side", is_blue_on_fugitive_movement_side)
         if is_blue_on_fugitive_movement_side:

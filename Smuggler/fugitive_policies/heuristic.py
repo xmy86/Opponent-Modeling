@@ -237,7 +237,7 @@ class HeuristicPolicy:
         new_location = np.round(start_location + direction * speed)
         new_location[0] = np.clip(new_location[0], 0, self.dim_x - 1)
         new_location[1] = np.clip(new_location[1], 0, self.dim_y - 1)
-        new_location = new_location.astype(np.int)
+        new_location = new_location.astype(np.int32)
         return new_location
 
     def calculate_desired_heading(self, start_location, end_location):

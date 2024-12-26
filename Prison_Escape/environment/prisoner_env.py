@@ -779,11 +779,11 @@ class PrisonerBothEnv(gym.Env):
         fugitive_speed = red_action[0]
         self.current_prisoner_speed = fugitive_speed
 
-        prisoner_location = np.array(self.prisoner.location, dtype=np.float)
+        prisoner_location = np.array(self.prisoner.location, dtype=np.float64)
         new_location = np.round(prisoner_location + direction * fugitive_speed)
         new_location[0] = np.clip(new_location[0], 0, self.dim_x - 1)
         new_location[1] = np.clip(new_location[1], 0, self.dim_y - 1)
-        new_location = new_location.astype(np.int)
+        new_location = new_location.astype(np.int32)
 
         # bump back from mountain
         if self.terrain.world_representation[0, new_location[0], new_location[1]] == 1:
@@ -1101,7 +1101,7 @@ class PrisonerBothEnv(gym.Env):
         :param coord: float sequence of length 2 in the range [0, 1)
         :return: np.ndarray of shape (2,) in the range [(0, 0), (dim_x, dim_y))
         """
-        return np.array([coord[0] * self.dim_x, coord[1] * self.dim_y], dtype=np.int)
+        return np.array([coord[0] * self.dim_x, coord[1] * self.dim_y], dtype=np.int32)
 
     def set_seed(self, seed):
         """
